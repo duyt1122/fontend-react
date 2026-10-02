@@ -1,39 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useState } from 'react';
 import './App.css'
 
-import MyFirstComponent from './test/my.component.jsx'
-import DuyComponent from './test/Second.component.tsx'
+import InputTodo from './todo/input.todo.js'
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const name = "Duy";
+  const people = {
+    hoten: "duyyy",
+    age: 20,
+    address: "Ka noi"
+  }
+  const gmail = "duyyy@gmail.com";
+  const arrayy = [1, 2, 3, 4, 5];
+  const [todos, setTodos] = useState(["todo1", "todo2", "todo3"]);
+  const clickFunction = (name: String) => {
+    alert(`test name: ${name}`)
+  }
   return (
-    <>
+    <div>
       <div>
-        <MyFirstComponent />
-        <DuyComponent />
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        name : {name}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div>tuoi: {people.age}</div>
+      <InputTodo
+        duy={name}
+        people={people}
+        gmail={gmail}
+        clickFunction={clickFunction}
+        todos={todos}
+        setTodos={setTodos} />
+
+      <br />
+      <ul>
+        {todos.map((item, index) => {
+          return (
+            <li key={index}>{item}</li>
+          )
+        })}
+      </ul>
+
+    </div>
   )
 }
 
