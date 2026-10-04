@@ -12,7 +12,12 @@ const router = createBrowserRouter([
   {
     path: "/users",
     element: <div>Manager Users</div>
+  },
+  {
+    path: "/admins",
+    element: <div>Manager Admins</div>
   }
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
