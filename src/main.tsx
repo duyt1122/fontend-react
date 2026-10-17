@@ -5,15 +5,25 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import UsersPage from './screens/users.page.tsx'
 // import './index.css'
 
+const layoutAdmin = () => {
+  return (
+    <div>Layout Admin</div>
+  )
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    // element: <App />,
+    element: <layoutAdmin />,
+    children: [
+      {
+        path: "users",
+        element: <UsersPage />
+      },
+    ]
   },
-  {
-    path: "/users",
-    element: <UsersPage />
-  },
+
   {
     path: "/admins",
     element: <div>Manager Admins</div>

@@ -58,14 +58,13 @@ const UsersTable = () => {
                 <tbody>
                     {listUsers.map((user: any, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={user.id}>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.age}</td>
                             </tr>
                         )
                     })}
-
                 </tbody>
             </table>
         </div>
