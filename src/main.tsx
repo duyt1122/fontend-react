@@ -1,13 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import UsersPage from './screens/users.page.tsx'
 // import './index.css'
 
-const layoutAdmin = () => {
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Menu } from 'antd';
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+const items: MenuItem[] = [
+  {
+    label: 'Home',
+    key: 'home',
+    icon: <MailOutlined />,
+  },
+  {
+    label: 'Manager Users',
+    key: 'users',
+    icon: <AppstoreOutlined />,
+
+  }
+];
+
+const Header = () => {
+  const [current, setCurrent] = useState('mail');
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
+
+  return (<Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />);
+};
+
+
+const LayoutAdmin = () => {
   return (
-    <div>Layout Admin</div>
+    <div>
+      <Header />
+      <Outlet />
+      <footer>Footer</footer>
+    </div>
+
   )
 }
 
@@ -15,8 +52,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     // element: <App />,
-    element: <layoutAdmin />,
+    element: <LayoutAdmin />,
     children: [
+      { index: true, element: <App /> },
       {
         path: "users",
         element: <UsersPage />
