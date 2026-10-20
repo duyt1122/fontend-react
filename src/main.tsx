@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider, Link } from 'react-router-dom'
 import UsersPage from './screens/users.page.tsx'
 // import './index.css'
 
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { HomeOutlined, TeamOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 
@@ -13,14 +13,14 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
   {
-    label: 'Home',
+    label: <Link to="/">Home</Link>,
     key: 'home',
-    icon: <MailOutlined />,
+    icon: <HomeOutlined />,
   },
   {
-    label: 'Manager Users',
+    label: <Link to="/users">Manager Users</Link>,
     key: 'users',
-    icon: <AppstoreOutlined />,
+    icon: <TeamOutlined />,
 
   }
 ];
