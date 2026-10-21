@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react'
-import '../../styles/users.css'
+// import '../../styles/users.css'
+import Table, { ColumnsType } from 'antd/es/table';
 
-// interface IUser {
-//     name: String;
-//     email: String;
-//     role: String;
-// }
+interface IUser {
+    name: String;
+    email: String;
+    age: number;
+}
 const UsersTable = () => {
 
     const [listUsers, setListUsers] = useState([]);
@@ -28,7 +29,7 @@ const UsersTable = () => {
         })
 
         const data = await res.json();
-        const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdXl0cmluaDEwNjIyMkBnbWFpbC5jb20iLCJBVVRIT1JJVElFUyI6WyJSRUFEIiwiUk9MRV9VRVIiLCJGQUNUT1JfUEFTU1dPUkQiXSwiZXhwIjoxNzkyMjA0OTcwLCJpYXQiOjE3OTIxMTg1NzB9.YnHbWsyiAd9ycZVULYSf65pgQ5xSzVdRQ4_q-T-fntA"
+        const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdXl0cmluaDEwNjIyMkBnbWFpbC5jb20iLCJBVVRIT1JJVElFUyI6WyJSRUFEIiwiUk9MRV9VRVIiLCJGQUNUT1JfUEFTU1dPUkQiXSwiZXhwIjoxNzkyNjgyNjU4LCJpYXQiOjE3OTI1OTYyNTh9.YPidsyryHVjHrlYjpIGWN3rxwra6T4l3zgxK8sO0Rw0"
 
         const getUsers = await fetch("http://localhost:8080/users/all", {
             headers: {
@@ -43,11 +44,32 @@ const UsersTable = () => {
     })
 
     console.log("Check listUsers: ", listUsers)
+
+    const columns: ColumnsType<IUser> = [
+        {
+            title: "Email",
+            dataIndex: "email",
+            render: (value, record) => {
+                return (
+                    <div>{record.email}</div>
+                )
+            }
+        },
+        {
+            title: "Name",
+            dataIndex: "name",
+        },
+        {
+            title: "Age",
+            dataIndex: "age",
+        }
+    ];
     return (
         <div>
             <h2>Table Users</h2>
 
-            <table>
+            <Table columns={columns} dataSource={listUsers} rowKey={"id"} />
+            {/* <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -66,7 +88,7 @@ const UsersTable = () => {
                         )
                     })}
                 </tbody>
-            </table>
+            </table> */}
         </div>
     )
 }

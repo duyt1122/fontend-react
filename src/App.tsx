@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import './App.css'
+// import './App.css'
 
 import InputTodo from './todo/input.todo.js'
 

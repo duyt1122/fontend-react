@@ -4,6 +4,7 @@ import App from './App.tsx'
 import { createBrowserRouter, Outlet, RouterProvider, Link } from 'react-router-dom'
 import UsersPage from './screens/users.page.tsx'
 // import './index.css'
+import './App.scss'
 
 import { HomeOutlined, TeamOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
