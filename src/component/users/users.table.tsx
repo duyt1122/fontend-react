@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 // import '../../styles/users.css'
 import Table, { ColumnsType } from 'antd/es/table';
+import { Button, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 interface IUser {
     name: String;
@@ -64,31 +66,47 @@ const UsersTable = () => {
             dataIndex: "age",
         }
     ];
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div>
-            <h2>Table Users</h2>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h2>Table Users</h2>
+                <div>
+                    <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
+                        Add New
+                    </Button>
+                </div>
+
+            </div>
+
 
             <Table columns={columns} dataSource={listUsers} rowKey={"id"} />
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listUsers.map((user: any, index) => {
-                        return (
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.age}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table> */}
+            <Modal
+                title="Basic Modal"
+                closable={{ 'aria-label': 'Custom Close Button' }}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+            >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Modal>
+
         </div>
     )
 }
